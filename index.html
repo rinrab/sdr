@@ -65,7 +65,7 @@
       var now = new Date();
       var next = new Date(now.getFullYear() + 1, burn.getMonth(), burn.getDate());
 
-      age3.innerText = "До следующего дня рождения осталось: " + Math.floor((next - now) / (24 * 60 * 60 * 1000)) + " дней";
+      age3.innerText = "До следующего дня рождения осталось " + Math.floor((next - now) / (24 * 60 * 60 * 1000)) + " дней";
     }
 
     setInterval(update, 10);
