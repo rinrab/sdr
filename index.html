@@ -21,6 +21,7 @@
     <div style="font-size: 36px">
       <h1>Ваш возраст:</h1>
       <p id="age-1"></p>
+      <p id="age-2"></p>
       <p id="age-3"></p>
       <div style="text-align: right">
         <img src="img.jpg" style="width: 80%; padding-bottom: 10px; max-width: 300px" />
@@ -59,7 +60,12 @@
       var diff = a - new Date(burn.getFullYear() + 1970, burn.getMonth(), burn.getDate());
       var hours = Math.floor(diff / 1000);
 
-      age3.innerText = `Всего: ${day} дней или ${hours} секунд `;
+      age2.innerText = `Всего: ${day} дней или ${hours} секунд `;
+
+      var now = new Date();
+      var next = new Date(now.getFullYear() + 1, burn.getMonth(), burn.getDate());
+
+      age3.innerText = "До следующего дня рождения осталось: " + Math.floor((next - now) / (24 * 60 * 60 * 1000)) + " дней";
     }
 
     setInterval(update, 10);
