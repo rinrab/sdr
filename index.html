@@ -1,5 +1,6 @@
-﻿<html>
+<html>
 <head>
+  <meta name="viewport" content="width=600,initial-scale=1">
   <title>С днем рождения!</title>
   <style>
     * {
@@ -7,25 +8,26 @@
     }
 
     body {
-      padding: 3rem;
-      overflow: hidden;
     }
 
     h1 {
-      font-size: 90px
+      font-size: 48px
     }
   </style>
 </head>
 <body>
-  <h1 style="text-align: center;">С днем рождения, Лева!</h1>
-  <div style="font-size: 70px">
-    <h1>Ваш возраст:</h1>
-    <p id="age-1"></p>
-    <p id="age-3"></p>
-    <img src="img.jpg" style="position: absolute;bottom:170px;right:0; width:100%;"/>
-    <p style="position: fixed; bottom: -30px; width: 100%; text-align: center;">От Андрея, Тимы, Оли, Вани</p>
+  <div style="padding: 3rem">
+    <h1 style="text-align: center;">С днем рождения, Лева!</h1>
+    <div style="font-size: 36px">
+      <h1>Ваш возраст:</h1>
+      <p id="age-1"></p>
+      <p id="age-3"></p>
+      <div style="text-align: right">
+        <img src="img.jpg" style="width: 80%; padding-bottom: 10px; max-width: 300px" />
+      </div>
+      <span>От Андрея, Тимы, Оли, Вани</span>
+    </div>
   </div>
-
   <script>
     const age1 = document.getElementById("age-1");
     const age2 = document.getElementById("age-2");
