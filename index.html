@@ -1,32 +1,37 @@
-<html>
+﻿<html>
 <head>
-  <meta name="viewport" content="width=600,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=.8, maximum-scale=0.8">
   <title>С днем рождения!</title>
   <style>
     * {
       font-family: Consolas, monospace, Menlo;
+      color: white;
     }
 
-    body {
+    span {
+      background: #0004;
     }
 
     h1 {
-      font-size: 48px
+      font-size: 36px
     }
   </style>
 </head>
-<body>
-  <div style="padding: 3rem">
+<body style="margin: 0;">
+  <div style="position: fixed; z-index: -999999999999; width: 100vw; height: 100vh; display: block;">
+    <img src="bg.png" style="margin: auto; height: 100vmax;" />
+  </div>
+  <div style="padding: 2rem; margin: auto; max-width: 800px;">
     <h1 style="text-align: center;">С днем рождения, Лёва!</h1>
     <div style="font-size: 36px">
       <h1>Ваш возраст:</h1>
       <p id="age-1"></p>
       <p id="age-2"></p>
       <p id="age-3"></p>
-      <div style="text-align: right">
-        <img src="img.jpg" style="width: 80%; padding-bottom: 10px; max-width: 300px" />
+      <div style="text-align: center">
+        <img src="img.png" style="width: 80%; padding-bottom: 10px; max-width: 300px" />
       </div>
-      <span>От Андрея, Тимы, Оли, Вани</span>
+      <p>От Андрея, Тимы, Оли, Вани</p>
     </div>
   </div>
   <script>
@@ -34,38 +39,24 @@
     const age2 = document.getElementById("age-2");
     const age3 = document.getElementById("age-3");
 
-    const burn = new Date("2006/04/27");
-    burn.setHours(15, 50); // 11 + 4
+    const birthday = new Date("2006/04/27");
+    birthday.setHours(15, 50); // 11 + 4
 
     function format(number) {
       return (number < 10) ? "0" + number : number;
     }
 
     function update() {
-      let time = Date.now();
-      time = new Date(time - burn);
-
-      var diff = new Date() - new Date(new Date().getFullYear(), burn.getMonth(), burn.getDate());
-      var day = Math.floor(diff / 1000 / 60 / 60 / 24);
-
-      age1.innerText = `${time.getFullYear() - 1970} лет, ${day} дней, ${time.getHours()}:${format(time.getMinutes())}:${format(time.getSeconds())}`;
-
-      var a = new Date();
-      a.setFullYear(a.getFullYear() + 1970);
-      var diff = a - new Date(burn.getFullYear() + 1970, burn.getMonth(), burn.getDate());
-      var day = Math.floor(diff / 1000 / 60 / 60 / 24);
-
-      var a = new Date();
-      a.setFullYear(a.getFullYear() + 1970);
-      var diff = a - new Date(burn.getFullYear() + 1970, burn.getMonth(), burn.getDate());
-      var hours = Math.floor(diff / 1000);
-
-      age2.innerText = `Всего: ${day} дней или ${hours} секунд `;
-
       var now = new Date();
-      var next = new Date(now.getFullYear() + 1, burn.getMonth(), burn.getDate());
-
-      age3.innerText = "До следующего дня рождения осталось " + Math.floor((next - now) / (24 * 60 * 60 * 1000)) + " дней";
+      var diff = new Date(now - birthday);
+      var day = Math.floor(Math.floor((diff - new Date(diff.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24));
+      age1.innerText = `${diff.getFullYear() - 1970} лет, ${day} дней, ${diff.getHours()}:${format(diff.getMinutes())}:${format(diff.getSeconds())}`;
+      
+      age2.innerText = `Всего: ${Math.floor(diff / 1000 / 60 / 60 / 24)} дней или ${Math.floor(diff / 1000)} секунд`;
+      
+      var next = new Date(now.getFullYear() + 1, birthday.getMonth(), birthday.getDate());
+      var daysInYear = ((now.getFullYear() % 4 == 0 && now.getFullYear() % 100 > 0) || now.getFullYear() % 400 == 0) ? 366 : 365;
+      age3.innerText = `До следующего дня рождения осталось: ${daysInYear - day} дней`;
     }
 
     setInterval(update, 500);
